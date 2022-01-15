@@ -43,13 +43,11 @@ let observable = Observable<String>.create { observer in
     return Disposables.create()
 }
 
-
-
-
-
-
-
-
-
-
-
+let infallible = Infallible<String>.create { observer in
+    // observer.onNext("Hello")
+    observer(.next("Hello"))
+    
+    observer(.completed)
+    
+    return Disposables.create()
+}
