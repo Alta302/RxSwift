@@ -27,6 +27,7 @@ import RxSwift
 /*:
  # Observers
  */
+
 let o1 = Observable<Int>.create { (observer) -> Disposable in
    observer.on(.next(0))
    observer.onNext(1)
