@@ -30,8 +30,20 @@ import RxSwift
 
 let disposeBag = DisposeBag()
 
+let subject = PublishSubject<Int>()
 
+subject.takeLast(2)
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
 
+(1 ... 10).forEach { subject.onNext($0) }
 
+subject.onNext(11)
 
+// subject.onCompleted()
 
+enum MyError: Error {
+    case error
+}
+
+subject.onError(MyError.error)
