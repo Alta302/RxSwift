@@ -42,8 +42,17 @@ let persons = [
     Person(name: "Tim", age: 56)
 ]
 
+Observable.from(persons)
+    .distinctUntilChanged(at: \.age)
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
 
+//Observable.from(tuples)
+//    .distinctUntilChanged { $0.1 }
+//    .subscribe { print($0) }
+//    .disposed(by: disposeBag)
 
-
-
-
+//Observable.from(numbers)
+//    .distinctUntilChanged { !$0.isMultiple(of: 2) && !$1.isMultiple(of: 2) }
+//    .subscribe { print($0) }
+//    .disposed(by: disposeBag)
