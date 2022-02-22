@@ -1,5 +1,4 @@
 //: [Previous](@previous)
-
 //
 //  Mastering RxSwift
 //  Copyright (c) KxCoding <help@kxcoding.com>
@@ -23,16 +22,12 @@
 //  THE SOFTWARE.
 //
 
-
 import Foundation
 import RxSwift
-
-
 /*:
  # throttle
  ## latest parameter
  */
-
 let disposeBag = DisposeBag()
 
 func currentTimeString() -> String {
@@ -41,14 +36,12 @@ func currentTimeString() -> String {
    return f.string(from: Date())
 }
 
-
-Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
-   .debug()
-   .take(10)
-   .throttle(.milliseconds(2500), latest: true, scheduler: MainScheduler.instance)
-   .subscribe { print(currentTimeString(), $0) }
-   .disposed(by: disposeBag)
-
+//Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+//   .debug()
+//   .take(10)
+//   .throttle(.milliseconds(2500), latest: true, scheduler: MainScheduler.instance)
+//   .subscribe { print(currentTimeString(), $0) }
+//   .disposed(by: disposeBag)
 
 Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
    .debug()
