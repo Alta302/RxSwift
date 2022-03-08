@@ -38,15 +38,26 @@ let oddNumbers = BehaviorSubject(value: 1)
 let evenNumbers = BehaviorSubject(value: 2)
 let negativeNumbers = BehaviorSubject(value: -1)
 
+let source = Observable.of(oddNumbers, evenNumbers, negativeNumbers)
 
+source
+    .merge(maxConcurrent: 2)
+    .subscribe { print($0) }
+    .disposed(by: bag)
 
+oddNumbers.onNext(3)
+evenNumbers.onNext(4)
 
+evenNumbers.onNext(6)
+oddNumbers.onNext(5)
 
+negativeNumbers.onNext(-2)
 
+oddNumbers.onCompleted()
 
+// oddNumbers.onCompleted()
+// oddNumbers.onError(MyError.error)
 
+// evenNumbers.onNext(8)
 
-
-
-
-
+// evenNumbers.onCompleted()
