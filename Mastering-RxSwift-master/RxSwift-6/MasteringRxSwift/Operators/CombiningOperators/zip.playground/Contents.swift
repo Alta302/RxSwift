@@ -37,11 +37,18 @@ enum MyError: Error {
 let numbers = PublishSubject<Int>()
 let strings = PublishSubject<String>()
 
+Observable.zip(numbers, strings) { "\($0) - \($1)" }
+    .subscribe { print($0) }
+    .disposed(by: bag)
 
+numbers.onNext(1)
+strings.onNext("one")
 
+numbers.onNext(2)
+strings.onNext("two")
 
+// numbers.onCompleted()
+numbers.onError(MyError.error)
 
-
-
-
-
+strings.onNext("three")
+strings.onCompleted()
